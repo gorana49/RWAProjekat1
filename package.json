@@ -1,0 +1,28 @@
+{
+  "name": "rwaprojekat1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server",
+    "build": "webpack",
+    "api": "json-server --watch db.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gorana49/RWAProjekat1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gorana49/RWAProjekat1/issues"
+  },
+  "homepage": "https://github.com/gorana49/RWAProjekat1#readme",
+  "devDependencies": {
+    "json-server": "^0.16.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
