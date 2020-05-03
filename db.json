@@ -1,0 +1,16 @@
+{
+    "korisnik" : [
+        {
+        "korisnicko_ime" : "goranica",
+        "sifra" : "blabla",
+        "ime" : "Gorana",
+        "prezime" : "Radovanovic"
+        },
+        {
+            "korisnicko_ime" : "bubili",
+            "sifra" : "blabla",
+            "ime" : "Zeljko",
+            "prezime" : "Balanovic"
+        }
+    ]
+}

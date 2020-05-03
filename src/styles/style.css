@@ -4,8 +4,18 @@ body
     background-size: cover;
     background-repeat: no-repeat;
 }
-
-
+.body2
+{
+    background-image: url(../photos/slika1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.body3
+{
+    background-image: url(../photos/slika2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 .imageLogo
 {
     padding: 0px 0px 0px 0px;

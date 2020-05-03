@@ -10,12 +10,21 @@ module.exports = {
     compress: true,
     port: 9000
   },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ]
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
-    rules : [
+    rules :
+    [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
@@ -32,13 +41,15 @@ module.exports = {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
           {
-            loader: 'url-loader',
-            options:  {
-            mimetype: 'image/png'}
+            loader: 'file-loader',
+            //options:  {
+           // mimetype: 'image/png'}
           },
-     ],
-     },
-    ]
+        ],
+
+      }
+    ],
   },
+
   plugins: []
 };
