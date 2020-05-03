@@ -1,0 +1,36 @@
+body
+{
+    background-image: url(../photos/slikaPocetna.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.imageLogo
+{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    height: 300px;
+    width: 250px;
+}
+
+.dugmeDiv
+{
+    left: 40px;
+    position: absolute;
+    top: 50%;
+    z-index: 2147483643;
+    transform: translateY(-50%);
+}
+
+.dugme{
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 3px #fff;
+    cursor: pointer;
+    height: 16px;
+    margin-bottom: 10px;
+    opacity: .4;
+    position: relative;
+    width: 16px;
+    box-sizing: border-box;
+}

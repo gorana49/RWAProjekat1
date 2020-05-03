@@ -1,5 +1,7 @@
-import * as urlPocetna from '../src/photos/slikaPocetna.jpg';
 import * as urlLogo from '../src/photos/logoApp.png';
+import { switchMap, takeUntil } from 'rxjs/operators';
+import { timer, fromEvent } from 'rxjs';
+
 
 export function nacrtajPocetnuStranu(roditelj)
 {
@@ -7,9 +9,19 @@ export function nacrtajPocetnuStranu(roditelj)
     const naslov= napraviElement(kontejner, "div", "naslov");
     const imageLogo= napraviElement(naslov,"img","imageLogo");
     imageLogo.src= urlLogo.default;
-    const slikaDugmici= napraviElement(kontejner,"div","slikaDugmici");
-    const imagePocetna= napraviElement(slikaDugmici,"img", "imagePocetna");
-    imagePocetna.src= urlPocetna.default;      
+
+    let dugmeDiv=napraviElement(kontejner, "div", "dugmeDiv");
+    let dugme1 = napraviElement(dugmeDiv, "div", "dugme");
+    let dugme2 = napraviElement(dugmeDiv, "div", "dugme");
+    let dugme3 = napraviElement(dugmeDiv, "div", "dugme");
+
+    const mouseDown$ = fromEvent(kontejner, 'mousedown')
+    const mouseUp$ = fromEvent(kontejner, 'mouseup')
+
+    const stream$ = mouseDown$.pipe(
+    switchMap(() => timer(500).pipe(takeUntil(mouseUp$))));
+
+    stream$.subscribe(() => console.log('Only Fired after 500ms'))
 };
 export function napraviElement(roditelj, tip, imeKlase)
 {
@@ -21,8 +33,5 @@ export function napraviElement(roditelj, tip, imeKlase)
 
 export function nacrtajDugmice(roditelj)
 {
-    let dugmeDiv=napraviElement(roditelj, "div", "dugmeDiv");
-    let dugme1 = napraviElement(roditelj, "div", "dugme");
-    let dugme2 = napraviElement(roditelj, "div", "dugme");
-    let dugme3 = napraviElement(roditelj, "div", "dugme");
+    
 };
