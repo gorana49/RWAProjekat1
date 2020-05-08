@@ -1,11 +1,12 @@
 export class Recept
 {
-  constructor(id_recepta, ime, ukupno_trajanje)
+  constructor(id_recepta, ime, tip, ukupno_trajanje)
   {
     this.id_recepta = id_recepta;
-    this.ime = ime;
+    this.naziv = ime;
     this.ukupno_trajanje = ukupno_trajanje;
     this.nizFaza=[];
     this.nizSastojaka=[];
+    this.tip=tip;
   }
 }

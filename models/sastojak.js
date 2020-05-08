@@ -1,9 +1,9 @@
 export class Sastojak
 {
-  constructor(id_sastojka, naziv, tip)
+  constructor(id_sastojka,kolicina,naziv)
   {
     this.id_sastojka = id_sastojka;
     this.naziv = naziv;
-    this.tip = tip;
+    this.kolicina= kolicina;
   }
 }
