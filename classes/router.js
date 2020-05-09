@@ -44,10 +44,10 @@ export class Router {
         concreteRecipePage.drawConcreteRecipePage();
     }
 
-    navigateToMakingPage()
+    navigateToMakingPage(recipe)
     {
         let makingPage= new MakingPage();
-        makingPage.drawMakingPage(document.getElementById("contentContainer"));
+        makingPage.drawMakingPage(document.getElementById("contentContainer"),recipe);
     }
 
     navigateToAddRecepiesPage()

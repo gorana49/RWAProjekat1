@@ -19,16 +19,42 @@
         "naziv": "mafini",
         "tip": "slatko",
         "ukupno_trajanje":30,
-        "nizFaza": [1,2,3,4,5],
-        "nizSastojaka" : [1,2,3,4,5]
+        "nizFaza": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+        ],
+        "nizSastojaka" : [
+            1,
+            2,
+            3,
+            4,
+            5
+        ]
         },
         {
         "id_recepta" : 2,
         "naziv": "piletina sa povrcem",
         "tip" : "slano",
         "ukupno_trajanje":90,
-        "nizFaza": [6,7,8,9,10],
-        "nizSastojaka" : [1,2,3,4,5]
+        "nizFaza": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+        ],
+        "nizSastojaka" : [3,4,5]
         }
     ],
     "sastojci":[
@@ -58,11 +84,11 @@
             "kolicina" : "160 gr"
         }
     ],
-    "faze":[
+    "faza":[
         {
             "id_faze":1,
             "naziv":"seckanje",
-            "trajanje": "5 minuta",
+            "trajanje": 5,
             "opis":"uključiti rernu na 250 stepeni; 100 gr čokolade iseckati na kockice i ostaviti na sobnoj temperaturi",
             "paralelno": 0
         },

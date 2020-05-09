@@ -28,6 +28,7 @@ export class RecepiesPage {
     }
     drawRecipe(recipesBoxContainer, recipe)
     {
+        console.log(recipe);
         let concreteRecipe= createSomeElement(recipesBoxContainer,"div", "concreteRecipe");
         let recipeName= createSomeElement(concreteRecipe,"div", "recipeName");
         recipeName.innerHTML=recipe.naziv;
@@ -36,7 +37,10 @@ export class RecepiesPage {
         let recipeDuration= createSomeElement(concreteRecipe,"div","recipeDuration");
         recipeDuration= recipe.ukupno_trajanje;
         let recipeStart= createSomeElement(concreteRecipe,"button","recipeStart");
-        recipeStart.innerHTML= "Pokreni pripremu";
+        recipeStart.innerHTML= "Pregled";
+        recipeStart.onclick=(ev)=>{
+            this._router.navigateToMakingPage(recipe);
+        }
     }
     drawError(err)
     {

@@ -8,4 +8,13 @@ export class Faza
     this.opis= opis;
     this.paralelno= paralelno;
   }
+
+  getTrajanje()
+  {
+    return this.trajanje;
+  }
+  getOpis()
+  {
+    return this.opis;
+  }
 }

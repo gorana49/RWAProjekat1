@@ -1,6 +1,7 @@
 import { fromFetch, switchMap } from "rxjs";
 const baseURL= " http://localhost:3000/recept";
-const baseURL1= "http://localhost:3000/faze/"
+const baseURL1= "http://localhost:3000/faza/"
+const baseURL2= "http://localhost:3000/sastojci/"
 export class RecepiesService
 {
     constructor(){
@@ -13,16 +14,21 @@ export class RecepiesService
 
     async getRecipeById(recipeId){
         return from(fetch(`http://localhost:3000/recept?receptId=${recipeId}`) 
-        .then(response=>response.json()));
-  
+        .then(response=>response.json()))
+        .catch(err => console.log(err));
     }
 
-    async getRecepiesPhase(phasesIds)
-    {
-    return Promise.all(
-      phasesIds.map(id => fetch(baseURL1 + id)
-      .then(res => res.json())))
-      .catch(err => console.log(err));
+    async fetchMultiplePhasesAsync(nizFaza) {
+      return Promise.all(
+          nizFaza.map(id => fetch(`http://localhost:3000/faza?id_faze=${id}`)
+          .then(res => res.json())))
+          .catch(err => console.log(err));
     }
 
+    async fetchMultipleIngridientAsync(nizSastojaka) {
+        return Promise.all(
+          nizSastojaka.map(id => fetch(`http://localhost:3000/sastojci?id_sastojka=${id}`)
+          .then(res => res.json())))
+          .catch(err => console.log(err));
+    }
 }

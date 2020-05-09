@@ -1,0 +1,18 @@
+.contentContainer{
+    display: flex;
+}
+.mainContentContainer
+{
+    display: flex;
+    flex-direction: column;
+}
+.ingridientBox
+{
+
+}
+
+.recipeBox
+{
+    display: flex;
+    flex-direction: row;
+}

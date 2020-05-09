@@ -53,6 +53,7 @@ body
 }
 .buttonRegistration
 {
+    flex-basis: 0;
     background-color: darkseagreen;
     border: none;
     color:white;
@@ -64,6 +65,7 @@ body
 }
 .buttonLogin
 {
+    flex-basis: 0;
     background-color: darkred;
     border: none;
     color: white;
