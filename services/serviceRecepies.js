@@ -31,4 +31,13 @@ export class RecepiesService
           .then(res => res.json())))
           .catch(err => console.log(err));
     }
+
+
+    async getNameTypeRecipe(typeNameRecipe){
+      var recipeName = typeNameRecipe[0]; 
+      var recipeType=typeNameRecipe[1];
+      
+      return from(fetch(`http://localhost:3000/recept?naziv=${recipeName}&tip=${recipeType}`)
+     .then(response=>response.json()));
+ }
 }

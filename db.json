@@ -3,14 +3,12 @@
         {
         "korisnicko_ime" : "goranica",
         "sifra" : "blabla",
-        "ime" : "Gorana",
-        "prezime" : "Radovanovic"
+        "br_napisanih_recepata":0
         },
         {
         "korisnicko_ime" : "bubili",
         "sifra" : "blabla",
-        "ime" : "Zeljko",
-        "prezime" : "Balanovic"
+        "br_napisanih_recepata":0
         }
     ],
     "recept": [
