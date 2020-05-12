@@ -1,8 +1,9 @@
 import { Router } from "../../classes/router";
 import {createSomeElement} from "../../constants/createSomeElement";
 import {RecepiesService} from "../../services/serviceRecepies"
-import { interval, fromEvent} from 'rxjs';
-import { map } from 'rxjs/operators';
+import { interval, zip, fromEvent} from 'rxjs';
+import '../../assets/css/styleRecipesPage.css'
+import { map, flatMap} from 'rxjs/operators';
 import * as urlSlika0 from "../../assets/resources/slika0.jpg";
 import * as urlSlika1 from "../../assets/resources/slika1.jpg";
 import * as urlSlika2 from "../../assets/resources/slika2.jpg";
@@ -24,11 +25,11 @@ export class RecepiesPage {
         this._recipeService.getRecipes()
         .then(nizRecepata => {
           nizRecepata.forEach(recept => {
-              console.log(recept);
               let  pomocniRecept = new Recept(recept.id_recepta,recept.naziv,recept.tip, recept.ukupno_trajanje, recept.nizFaza, recept.nizSastojaka);
               this._recipeArray.push(pomocniRecept);
           });
-        })
+        });
+
     }
 
     drawRecipesBox(recipesBox)
@@ -37,10 +38,14 @@ export class RecepiesPage {
         this.drawSlider(recipesBox);
         let recipesBoxContainer = createSomeElement(recipesBox, "div","recipesBoxContainer");
     }
+
     drawInputBox(recipesBox)
     {
-        const inputBox = createSomeElement(recipesBox,"div", "inputBox");
-        const inputName = createSomeElement(inputBox,"input", "inputName");
+        const inputBox = createSomeElement(recipesBox, "div", "inputBox");
+        const inputBoxText =createSomeElement(inputBox, "div", "inputBoxText");
+        inputBoxText.innerHTML ="Unesite naziv recepta, ukoliko ga ima u bazi, bice prikazan.";
+        const inputBoxName = createSomeElement(inputBox,"div", "inputBox");
+        const inputName = createSomeElement(inputBoxName,"input", "inputName");
         
         this.searchRecipes();
     }
@@ -86,20 +91,48 @@ export class RecepiesPage {
         let recipeDuration= createSomeElement(concreteRecipe,"div","recipeDuration");
         recipeDuration= recipe.ukupno_trajanje;
         let recipeStart= createSomeElement(concreteRecipe,"button","recipeStart");
-        recipeStart.innerHTML= "Pregled";
+        recipeStart.innerHTML= "pregled";
+        let recipeDescription = createSomeElement(concreteRecipe,"button","recipeDescription");
+        recipeDescription.innerHTML= "opis";
+        recipeDescription.onclick = (ev) => {
+            this.drawModal(recipe, recipesBoxContainer[0]);
+        }
         recipeStart.onclick=(ev)=>{
             this._router.navigateToMakingPage(recipe);
         }
+
     }
+    drawModal(recipe, recipesBoxContainer)
+    {
+        recipesBoxContainer.innerHTML ="";
+        let modal = createSomeElement(recipesBoxContainer, "div" , "modal");
+        let sastojci = createSomeElement(modal, "div","sastojci");
+        let faze = createSomeElement(modal, "div", "faze");
+
+    let phases$ = this._recipeService.getMultiplePhasesAsync(recipe)
+    .pipe(flatMap(faza => faza));
+    let ingridients$ = this._recipeService.getMultipleIngridientAsync(recipe)
+    .pipe(flatMap(sastojak => sastojak));
+    zip(phases$,ingridients$).pipe(
+        map(([phase,ingridient]) => ({phase,ingridient})))
+        .subscribe(object => {
+            faze.innerHTML += " " +object.phase[0].naziv;
+            sastojci.innerHTML+=" " + object.ingridient[0].naziv;});
+        let returnButton = createSomeElement(modal, "button", "returnButton");
+        returnButton.innerHTML="nazad";
+    returnButton.onclick = (ev) => {
+        this.drawRecipe(recipe);
+    }
+    };
+
     drawError(err)
     {
         this._contentDiv.innerHTML = err;
     }
-
     searchRecipes()
     {
-
-        let searchButton = document.getElementById("searchButton");
+        let recipesBoxContainer = document.getElementsByClassName("recipesBoxContainer");
+        recipesBoxContainer.innerHTML = "";
         let inputName = document.getElementsByClassName("inputName");
         let streamInputFrom$=fromEvent(inputName,"input")
         .pipe(
@@ -118,6 +151,4 @@ export class RecepiesPage {
 
         })
     }
-
-
 }

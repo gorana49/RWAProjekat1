@@ -1,52 +1,16 @@
-.mainContentContainer1
+.recipesBox
 {
     display: flex;
     flex-direction: column;
 }
-.ingridientBox
-{
-    font-family: "Courier New", Courier, monospace;
-    font-size: larger;
-    font-weight: 999;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-.sastojakNaslov
-{
-    background-color: lightgoldenrodyellow;
-    margin-top: 10px;
-    font-family: "Courier New", Courier, monospace;
-    font-size: larger;
-    font-weight: 999;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    opacity: 50;
-}
-.recipeBox
-{
-    background-color: rgb(219, 219, 166);
-    display: flex;
-    flex-direction: row;
-}
-.recipeBoxPhase
-{
 
-    font-family: "Courier New", Courier, monospace;
-    font-size: larger;
-    font-weight: 999;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.inputBox
+{
+    display: flex;
+    flex-direction: column;
 }
-.recipeBoxNavBar
+
+.inputBoxText
 {
     font-family: "Courier New", Courier, monospace;
     font-size: larger;
@@ -54,12 +18,31 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+.inputName{
+    width: 300px;
+}
+
+.recipesBoxContainer
+{
     border: 1px solid #ddd;
     border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+    height: 250px;
+
 }
-.fazeNaslov
+.recipesBoxSliderImage
 {
-    background-color: rgb(178, 214, 184);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+    height: 250px;
+
+}
+.recipeType
+{
     font-family: "Courier New", Courier, monospace;
     font-size: larger;
     font-weight: 999;
@@ -67,7 +50,27 @@
     display: inline-block;
     font-size: 16px;
 }
-.recipeBoxPhaseButton
+.recipeName
+{
+    font-family: "Courier New", Courier, monospace;
+    font-size: larger;
+    font-weight: 999;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.recipeStart
+{
+    background-color: rgb(164, 221, 186);
+    border: none;
+    color:white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.recipeDescription
 {
     background-color: rgb(119, 49, 49);
     border: none;
@@ -78,11 +81,13 @@
     display: inline-block;
     font-size: 16px;
 }
-.fazeNaslov{
-    background-color: rgb(178, 214, 184);
-}
-.nazadDugme
+.concreteRecipe
 {
+    display: flex;
+    flex-direction: column;
+}
+
+.returnButton{
     background-color: rgb(178, 214, 184);
     border: none;
     color:black;
@@ -93,3 +98,25 @@
     font-size: 16px;
 }
 
+.modal
+{
+    
+}
+.faze
+{
+    font-family: "Courier New", Courier, monospace;
+    font-size: larger;
+    font-weight: 999;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.sastojci
+{
+    font-family: "Courier New", Courier, monospace;
+    font-size: larger;
+    font-weight: 999;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

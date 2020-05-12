@@ -1,15 +1,13 @@
 import { Router } from "../../classes/router";
 import {createSomeElement} from "../../constants/createSomeElement";
-import '../../assets/css/styleRegistrationPage.css'
-import {RecipesUsers} from "../../services/serviceUser"
+import '../../assets/css/styleLoginPage.css'
+import {UsersService} from "../../services/serviceUser"
 import {Korisnik} from "../../models/korisnik";
-import { fromEvent, Subject,merge } from "rxjs";
-import { map, combineLatest, forkJoin, sampleTime, debounceTime} from "rxjs/operators";
 export class RegistrationPage {
     constructor() {
         this._contentDiv = document.getElementById("contentContainer");
         this._router = new Router();
-        this._userService = new RecipesUsers();
+        this._userService = new UsersService();
         this._users = [];
     }
     drawRegistrationPage(content)
@@ -23,56 +21,78 @@ export class RegistrationPage {
         const formBoxUsernameDiv= createSomeElement(formBox,"div","formBoxUsernameDiv");
         formBoxUsernameDiv.innerHTML= "Korisničko ime:"
         const formBoxUsernameInputDiv= createSomeElement(formBox,"div","formBoxUsernameInputDiv");
-        const formBoxUsernameInput= createSomeElement(formBoxUsernameDiv,"input","formBoxUsernameInput");
+        const formBoxUsernameInput= createSomeElement(formBoxUsernameInputDiv,"input","formBoxUsernameInput");
 
         const formBoxPasswordDiv= createSomeElement(formBox,"div","formBoxPasswordDiv");
         formBoxPasswordDiv.innerHTML= "Vaša sifra:"
         const formBoxPasswordInputDiv= createSomeElement(formBox,"div","formBoxPasswordInputDiv");
         const formBoxPasswordInput= createSomeElement(formBoxPasswordInputDiv,"input","formBoxPasswordInput");
-
-        const formBoxButtonDiv= createSomeElement(formBox,"div", "formBoxButtonDiv");
+        const dugmici = createSomeElement(formBox,"div", "dugmici");
+        const formBoxButtonDiv= createSomeElement(dugmici,"div", "formBoxButtonDiv");
         const formBoxButton= createSomeElement(formBoxButtonDiv, "button", "formBoxButton");
-        formBoxButton.innerHTML="Potvrdi";
-            const streamInputUsername$=fromEvent(formBoxUsernameInput,"input")
-            .pipe(
-              map(input=>input.target.value));
-            const streamInputPass$=fromEvent(formBoxPasswordInputDiv,"input")
-              .pipe(
-                debounceTime(1000),
-                map(input=>input.target.value));
-            forkJoin(streamInputUsername$ , streamInputPass$).subscribe(([username, pass]) => {
-                console.log(username, pass);
-
-            });  
-
-
+        formBoxButton.innerHTML="potvrdi";
+        formBoxButton.onclick= (ev) => {
+            this.proveriSve(formBoxUsernameInput.value , formBoxPasswordInput.value);
+        }
+        const boxBackButtonDiv= createSomeElement(dugmici,"div", "formBoxButtonDiv");
+        const boxBackButton= createSomeElement(boxBackButtonDiv, "button", "boxBackButton");
+        boxBackButton.innerHTML="nazad";
+        boxBackButton.onclick= (ev) => {
+            this._router.navigateToMainPage();
+        }
         this._userService.getUsers()
         .then(nizKorisnika => {
-          nizKorisnika.forEach(korisnik => {
-              console.log(korisnik);
-              let  pomocniKorisnik = new Korisnik(korisnik.korisnicko_ime,korisnik.sifra);
+            nizKorisnika.forEach(korisnik => {
+              let  pomocniKorisnik = new Korisnik(korisnik.id,korisnik.korisnicko_ime,korisnik.sifra,korisnik.br_napisanih_recepata);
               this._users.push(pomocniKorisnik);
-          });
-        })
-    }
-    checkDatabase(username)
+            })
+        })      
+    } 
+    proveriSve (username, pass)
     {
-        const result  = this._users.filter(el => el.username == username);
-        if(result == null)
+
+        if(this.validacija(username,pass) == 1)
         {
-            this._userService.updateUsers(result);
+            let redniBroj= this._users.length;
+
+            const result = this._users.filter(el => el.korisnicko_ime == username);
+            if(result.length == 0)
+            {
+                let korisnik = {
+                    id:redniBroj,
+                    korisnicko_ime:username,
+                    sifra:pass,
+                    br_napisanih_recepata:0
+                }
+                this._userService.updateUsers(korisnik);
+                this._router.navigateToRecepiesPage();
+            }   
+            else
+            {
+                this._router.navigateToLoginPage();
+            } 
         }
-        else {
-            this.alertAboutEmptyFields();
+        else{
+            this._router.navigateToRegistrationPage();
         }
+        
     }
-    alertAboutEmptyFields(){
-        let alertSubject=new Subject();
-        alertSubject.pipe(
-          sampleTime(1000)
-        ).subscribe(message=>alert(message));
-
-        alertSubject.next("Popunite prazna polja!");
-      }
-
+    validacija(username, pass)
+    {
+        if(username == "")
+        {
+            alert('popunite sva polja!');
+            this._router.navigateToRegistrationPage();
+        }
+           
+        else if(pass == "")
+        {
+            alert('popunite sva polja!');
+            this._router.navigateToRegistrationPage();
+        }
+        else{
+            return 1;
+        }
+          
+    }
 }

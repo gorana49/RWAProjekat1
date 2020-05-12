@@ -1,5 +1,7 @@
+import { from } from "rxjs";
+import { isConstructorDeclaration } from "typescript";
 const BASE_URL= "http://localhost:3000";
-export class RecipesUsers
+export class UsersService
 {
     constructor(){
     }
@@ -18,10 +20,11 @@ export class RecipesUsers
 
   updateUsers(user){
     const newUser={
-        method:"put",
-        body: JSON.stringify(flight),
+        method:"post",
+        body: JSON.stringify(user),
         headers:{'Content-Type':'application/json'},
     };
-    return from(fetch(`http://localhost:3000/korisnik/${user.korisnicko_ime}`,newUser).then((response)=>response.json()))
+    console.log(newUser);
+    return from(fetch(`http://localhost:3000/korisnik`,newUser).then((response)=>response.json()))
     }
 }

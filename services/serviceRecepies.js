@@ -1,7 +1,7 @@
-import { fromFetch, switchMap } from "rxjs";
 const baseURL= " http://localhost:3000/recept";
 const baseURL1= "http://localhost:3000/faza/"
 const baseURL2= "http://localhost:3000/sastojci/"
+import { from } from "rxjs";
 export class RecepiesService
 {
     constructor(){
@@ -32,6 +32,13 @@ export class RecepiesService
           .catch(err => console.log(err));
     }
 
+    getMultiplePhasesAsync(recipe){
+      return from(recipe.nizFaza.map(id => fetch(`http://localhost:3000/faza?id_faze=${id}`)
+      .then(response=>response.json())));}
+
+    getMultipleIngridientAsync(recipe){
+      return from(recipe.nizSastojaka.map(id => fetch(`http://localhost:3000/sastojci?id_sastojka=${id}`)
+      .then(response=>response.json())));}  
 
     async getNameTypeRecipe(typeNameRecipe){
       var recipeName = typeNameRecipe[0]; 
