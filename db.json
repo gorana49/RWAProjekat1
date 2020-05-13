@@ -32,26 +32,14 @@
     },
     {
       "id": 5,
-      "korisnicko_ime": "milos",
-      "sifra": "misa123",
-      "br_napisanih_recepata": 0
-    },
-    {
-      "id": 6,
-      "korisnicko_ime": "bubi",
-      "sifra": "bubi12",
-      "br_napisanih_recepata": 0
-    },
-    {
-      "id": 7,
-      "korisnicko_ime": "andjela",
-      "sifra": "andja123",
+      "korisnicko_ime": "mara",
+      "sifra": "mara123",
       "br_napisanih_recepata": 0
     }
   ],
   "recept": [
     {
-      "id_recepta": 1,
+      "id": 1,
       "naziv": "mafini",
       "tip": "slatko",
       "ukupno_trajanje": 30,
@@ -75,7 +63,7 @@
       ]
     },
     {
-      "id_recepta": 2,
+      "id": 2,
       "naziv": "piletina sa povrcem",
       "tip": "slano",
       "ukupno_trajanje": 90,
@@ -95,98 +83,137 @@
         4,
         5
       ]
+    },
+    {
+      "id": 3,
+      "naziv": "kajgana",
+      "tip": "slano",
+      "ukupno_trajanje": "5",
+      "nizFaza": [
+        10,
+        11
+      ],
+      "nizSastojaka": [
+        5,
+        6,
+        7
+      ]
     }
   ],
   "sastojci": [
     {
-      "id_sastojka": 1,
+      "id": 1,
       "naziv": "jaja",
       "kolicina": 4
     },
     {
-      "id_sastojka": 2,
+      "id": 2,
       "naziv": "margarin",
       "kolicina": "250gr"
     },
     {
-      "id_sastojka": 3,
+      "id": 3,
       "naziv": "čokolada",
       "kolicina": "320 gr"
     },
     {
-      "id_sastojka": 4,
+      "id": 4,
       "naziv": "brašno",
       "kolicina": "120 gr"
     },
     {
-      "id_sastojka": 5,
+      "id": 5,
       "naziv": "šećer",
       "kolicina": "160 gr"
+    },
+    {
+      "naziv": "zejtin",
+      "kolicina": "2 kasike",
+      "id": 6
+    },
+    {
+      "naziv": "so",
+      "kolicina": "prstohvat",
+      "id": 7
     }
   ],
   "faza": [
     {
-      "id_faze": 1,
+      "id": 1,
       "naziv": "seckanje",
       "trajanje": 5,
       "opis": "uključiti rernu na 250 stepeni; 100 gr čokolade iseckati na kockice i ostaviti na sobnoj temperaturi",
       "paralelno": 0
     },
     {
-      "id_faze": 2,
+      "id": 2,
       "naziv": "kuvanje",
       "trajanje": 10,
       "opis": "Na pari skuvati 220 gr čokolade i 250gr margarina",
       "paralelno": 1
     },
     {
-      "id_faze": 3,
+      "id": 3,
       "naziv": "mućenje",
       "trajanje": 4,
       "opis": "Umutiti jaja, šećer i brašno. Ukoliko imate, dodajte ekstrakt ruma.",
       "paralelno": 1
     },
     {
-      "id_faze": 4,
+      "id": 4,
       "naziv": "pripremanje pleha",
       "trajanje": 2,
       "opis": "namestiti koripice u pleh",
       "paralelno": 1
     },
     {
-      "id_faze": 5,
+      "id": 5,
       "naziv": "miksirati",
       "trajanje": 2,
       "opis": "Pomešati obe mase",
       "paralelno": 0
     },
     {
-      "id_faze": 6,
+      "id": 6,
       "naziv": "sipati",
       "trajanje": 5,
       "opis": "Sipati masu u korpice, staviti po kockicu čokolade u svaku korpicu.",
       "paralelno": 0
     },
     {
-      "id_faze": 7,
+      "id": 7,
       "naziv": "pečenje",
       "trajanje": 10,
       "opis": "Staviti pleh u rernu i peći 10 minuta na 220 stepeni",
       "paralelno": 1
     },
     {
-      "id_faze": 8,
+      "id": 8,
       "naziv": "sređivanje",
       "trajanje": 8,
       "opis": "iskoristi vreme da osmislite dekoraciju i pospremite kuhinju",
       "paralelno": 1
     },
     {
-      "id_faze": 9,
+      "id": 9,
       "naziv": "čestitamo",
       "trajanje": 2,
       "opis": "Čestitamo, napravili ste upravo najlepše mafine!",
       "paralelno": 0
+    },
+    {
+      "naziv": "polupati jaja",
+      "trajanje": "3",
+      "opis": "polupati jaja, pomesati ih",
+      "paralelno": "0",
+      "id": 10
+    },
+    {
+      "naziv": "ispraziti jaja",
+      "trajanje": "2",
+      "opis": "isprziti jaja na zagrejanom tiganju",
+      "paralelno": "0",
+      "id": 11
     }
   ]
 }

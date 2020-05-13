@@ -5,5 +5,6 @@ import '../../assets/css/styleMainPage.css';
 
 const mainPage=new MainPage();
 createNavigationBar();
-const pomocna= document.getElementById("contentContainer");
-mainPage.drawMainPage(document.getElementById("contentContainer"));
+const pomocna:HTMLDivElement= document.getElementById("contentContainer")as HTMLDivElement;
+mainPage.drawMainPage(pomocna);
+

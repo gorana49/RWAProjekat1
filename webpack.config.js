@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './src/Pages/index.js',
+  entry: './src/Pages/index.ts',
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
@@ -41,8 +41,8 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            //options:  {
-           // mimetype: 'image/png'}
+            options:  {
+           mimetype: 'image/png'}
           },
         ],
 

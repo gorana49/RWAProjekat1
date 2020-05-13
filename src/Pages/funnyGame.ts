@@ -1,35 +1,36 @@
 import { Router } from "../../classes/router";
-import {createSomeElement} from "../../constants/createSomeElement";
+import {createSomeDiv, createSomeButton} from "../../constants/createSomeElement";
 import { fromEvent, merge} from 'rxjs';
 import { take} from 'rxjs/operators';
 
 
 export class FunnyGame {
+    _router:Router;
     constructor() {
-        this._contentDiv = document.getElementById("contentContainer");
+       // this._contentDiv = document.getElementById("contentContainer");
         this._router = new Router();
     }
-    drawFunnyGame(content)
+    drawFunnyGame(content:HTMLDivElement)
     {
         content.innerHTML = "";
 
-        const cardBox = createSomeElement(content,"div","cardBox");
+        const cardBox:HTMLDivElement = createSomeDiv(content,"cardBox");
      
-        const cardBoxManual = createSomeElement(cardBox,"div", "cardBoxManual");
+        const cardBoxManual:HTMLDivElement = createSomeDiv(cardBox,"cardBoxManual");
         cardBoxManual.innerHTML = "Poigrajte se malo i vidite šta vam savetuje naša igrica!";
-        const cardBoxUput = createSomeElement(cardBox,"div","cardBoxUput");
+        const cardBoxUput:HTMLDivElement = createSomeDiv(cardBox,"cardBoxUput");
         cardBoxUput.innerHTML ="Ispred Vas je 5 kartica sa različitim nazivima. Klikom na dve Vama najsmešnije kartice, mi Vam dajemo razlog zašto je dobro da baš sa nama kuvate!";
-        const cardsBox = createSomeElement (cardBox, "div", "cardsBox");
-        const cardOutput = createSomeElement(cardBox, "div", "cardOutput");
-        const card1 = createSomeElement(cardsBox, "div", "card");
+        const cardsBox:HTMLDivElement = createSomeDiv(cardBox, "cardsBox");
+        const cardOutput:HTMLDivElement = createSomeDiv(cardBox, "cardOutput");
+        const card1:HTMLDivElement = createSomeDiv(cardsBox, "card");
         card1.innerHTML ="Kuhinjski moljac";
-        const card2 = createSomeElement(cardsBox, "div", "card");
+        const card2:HTMLDivElement = createSomeDiv(cardsBox, "card");
         card2.innerHTML ="Pravi mislilac";
-        const card3 = createSomeElement(cardsBox, "div", "card");
+        const card3:HTMLDivElement = createSomeDiv(cardsBox, "card");
         card3.innerHTML ="Unapred organizovan";
-        const card4 = createSomeElement(cardsBox, "div", "card");
+        const card4:HTMLDivElement = createSomeDiv(cardsBox, "card");
         card4.innerHTML ="Kuvanje je mudrost";
-        const card5 = createSomeElement(cardsBox, "div", "card");
+        const card5:HTMLDivElement = createSomeDiv(cardsBox, "card");
         card5.innerHTML ="Hrana je lek";
         const card1Klik = fromEvent(card1, 'click');
         const card2Klik = fromEvent(card2, 'click');
@@ -48,10 +49,10 @@ export class FunnyGame {
             }   
         });
 
-        const backButtonDiv = createSomeElement(cardBox, "div", "backButtonDiv");
-        const backButton = createSomeElement(backButtonDiv, "button", "backButton");
+        const backButtonDiv:HTMLDivElement = createSomeDiv(cardBox, "backButtonDiv");
+        const backButton:HTMLButtonElement = createSomeButton(backButtonDiv, "backButton");
         backButton.innerHTML = "nazad";
-        backButton.onclick = (ev) =>
+        backButton.onclick = (ev:Event) =>
         {
             this._router.navigateToMainPage();
         }

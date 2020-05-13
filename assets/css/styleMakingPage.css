@@ -14,6 +14,17 @@
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+.imeKorisnika
+{
+    font-family: "Courier New", Courier, monospace;
+    font-size: larger;
+    font-weight: 999;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 .sastojakNaslov
 {
     background-color: lightgoldenrodyellow;

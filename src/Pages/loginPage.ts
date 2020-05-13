@@ -1,53 +1,54 @@
 import { Router } from "../../classes/router";
-import {createSomeElement} from "../../constants/createSomeElement";
+import {createSomeDiv,createSomeButton, createSomeInput} from "../../constants/createSomeElement";
 import '../../assets/css/styleLoginPage.css'
 import {UsersService} from "../../services/serviceUser"
 import { of } from "rxjs";
 import {fromFetch} from "rxjs/fetch";
 import { switchMap, catchError } from 'rxjs/operators';
 export class LoginPage {
+    _router:Router;
+    _userService: UsersService;
     constructor() {
-        this._contentDiv = document.getElementById("contentContainer");
         this._router = new Router();
         this._userService = new UsersService();
     }
-    drawLoginPage(content)
+    drawLoginPage(content:HTMLDivElement)
     {
     
         content.innerHTML="";
         
-        const formBox= createSomeElement(content,"div", "formBox");
-        const formBoxText= createSomeElement(formBox,"div","formBoxText");
+        const formBox:HTMLDivElement= createSomeDiv(content,"formBox");
+        const formBoxText:HTMLDivElement= createSomeDiv(formBox,"formBoxText");
         formBoxText.innerHTML= "Dobrodošli natrag, prijavite se i na korak ste od novog zanimljivog recepta!";
 
-        const formBoxUsernameDiv= createSomeElement(formBox,"div","formBoxUsernameDiv");
+        const formBoxUsernameDiv:HTMLDivElement= createSomeDiv(formBox,"formBoxUsernameDiv");
         formBoxUsernameDiv.innerHTML= "Korisničko ime:"
-        const formBoxUsernameInputDiv= createSomeElement(formBox,"div","formBoxUsernameInputDiv");
-        const formBoxUsernameInput= createSomeElement(formBoxUsernameInputDiv,"input","formBoxUsernameInput");
+        const formBoxUsernameInputDiv:HTMLDivElement= createSomeDiv(formBox,"formBoxUsernameInputDiv");
+        const formBoxUsernameInput:HTMLInputElement= createSomeInput(formBoxUsernameInputDiv,"formBoxUsernameInput");
 
-        const formBoxPasswordDiv= createSomeElement(formBox,"div","formBoxPasswordDiv");
+        const formBoxPasswordDiv:HTMLDivElement= createSomeDiv(formBox,"formBoxPasswordDiv");
         formBoxPasswordDiv.innerHTML= "Vaša sifra:"
-        const formBoxPasswordInputDiv= createSomeElement(formBox,"div","formBoxPasswordInputDiv");
-        const formBoxPasswordInput= createSomeElement(formBoxPasswordInputDiv,"input","formBoxPasswordInput");
+        const formBoxPasswordInputDiv:HTMLDivElement= createSomeDiv(formBox,"formBoxPasswordInputDiv");
+        const formBoxPasswordInput:HTMLInputElement= createSomeInput(formBoxPasswordInputDiv,"formBoxPasswordInput");
 
-        const dugmici = createSomeElement(formBox,"div", "dugmici");
-        const formBoxButtonDiv= createSomeElement(dugmici,"div", "formBoxButtonDiv");
-        const formBoxButton= createSomeElement(formBoxButtonDiv, "button", "formBoxButton");
+        const dugmici:HTMLDivElement = createSomeDiv(formBox,"dugmici");
+        const formBoxButtonDiv:HTMLDivElement= createSomeDiv(dugmici,"formBoxButtonDiv");
+        const formBoxButton:HTMLButtonElement= createSomeButton(formBoxButtonDiv, "formBoxButton");
         formBoxButton.innerHTML="Potvrdi";
         
-        formBoxButton.onclick = (ev) =>
+        formBoxButton.onclick = (e:Event) =>
         {
             this.findUser(formBoxUsernameInput.value, formBoxPasswordInput.value);
         }
 
-        const boxBackButtonDiv= createSomeElement(dugmici,"div", "formBoxButtonDiv");
-        const boxBackButton= createSomeElement(boxBackButtonDiv, "button", "boxBackButton");
+        const boxBackButtonDiv:HTMLDivElement= createSomeDiv(dugmici,"formBoxButtonDiv");
+        const boxBackButton:HTMLButtonElement= createSomeButton(boxBackButtonDiv, "boxBackButton");
         boxBackButton.innerHTML="nazad";
-        boxBackButton.onclick= (ev) => {
+        boxBackButton.onclick= (e:Event) => {
             this._router.navigateToMainPage();
         }
     }
-    findUser(username, password)
+    findUser(username:string, password:string)
     {
         const formBoxButton = document.getElementsByClassName("formBoxButton");
         const data$ = fromFetch(`http://localhost:3000/korisnik?korisnicko_ime=${username}`).pipe(
@@ -74,7 +75,7 @@ export class LoginPage {
                      if(result[0].sifra == password)
                      {
                          console.log(1);
-                        this._router.navigateToRecepiesPage();
+                        this._router.navigateToRecepiesPage(username, password);
                      }
                      else{
                         this._router.navigateToLoginPage();

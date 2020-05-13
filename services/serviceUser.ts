@@ -1,11 +1,12 @@
 import { from } from "rxjs";
 import { isConstructorDeclaration } from "typescript";
+import { Korisnik } from "../models/korisnik";
 const BASE_URL= "http://localhost:3000";
 export class UsersService
 {
     constructor(){
     }
-   async fetchKorisnik(username) {
+   async fetchKorisnik(username:string) {
     return fetch(`http://localhost:3000/korisnik?korisnicko_ime=${username}`)
         .then(res => {res.json();
         console.log(res)})
@@ -18,8 +19,8 @@ export class UsersService
     .catch(err => console.log(err))
   }
 
-  updateUsers(user){
-    const newUser={
+  updateUsers(user:Korisnik){
+    const newUser : Object={
         method:"post",
         body: JSON.stringify(user),
         headers:{'Content-Type':'application/json'},
